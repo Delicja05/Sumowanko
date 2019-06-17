@@ -1,0 +1,25 @@
+[
+		{
+			"nazwisko_imie": "Kowalski Jan",
+			"indeks": 258966,
+			"js": 1,
+			"jq": 5,
+			"php": 2
+		},
+
+		{
+			"nazwisko_imie": "Nowak Anna",
+			"indeks": 123658,
+			"js": 1,
+			"jq": 4,
+			"php": 0
+		},
+
+		{
+			"nazwisko_imie": "Zielinski Piotr",
+			"indeks": 789632,
+			"js": 3,
+			"jq": 2,
+			"php": 1
+		}
+]

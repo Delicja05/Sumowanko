@@ -1,0 +1,74 @@
+﻿<!DOCTYPE HTML>
+<html lang="pl">
+<html> 
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+		<title>Sumowanko</title> 
+
+		<!-- Importuj jQuery -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<!-- Importuj AngularJS -->
+		<script type="text/javascript" src="/node_modules/angular/angular.js"></script>
+
+		<link href="/node_modules/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+		<script src="/node_modules/angular-xeditable/dist/js/xeditable.js"></script>
+
+	    <!-- Importuj Booststrap -->
+	    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+	    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+		<!-- Importuj kod aplikacji --> 
+		<script type="text/javascript" src="app.js"></script> 
+		<link href="app.css" rel="stylesheet" type="text/css"> 
+
+		<link rel="shortcut icon" href="about:blank">
+	</head>
+	<body>    <h1> Proste sumowanko!</h1> 
+	<!-- ten blok definiuje sekcję aplikacji userApp --> 
+		<div ng-app="userApp">
+		<!-- Ten blok definiuje kontroler UserCtrl -->
+			<div ng-controller="UserCtrl"> 
+				<table class="table table-bordered"> 
+					<thead>
+						<th>Operacja</th>
+						<th>Nazwisko i imię</th>
+						<th>Nr indeksu</th>
+						<th>JavaScript</th>
+						<th>JQuery</th>
+						<th>PHP</th>
+						<th>Suma</th>          
+					</thead>
+				<!-- prezentacja zawartości modelu w każdym wierszu osobny obiekt użytkownika -->
+					<tbody ng-repeat="user in users" ng-switch on="user.state">
+
+				<!-- Szablon wyświetlania użytkownika -->           
+					<tr ng-switch-default>
+						<td><input type="button" class="btn btn-primary" ng-click="deleteUser(user);" value="Usuń"/></td>
+						<td><a href="#" editable-text="user.nazwisko_imie" e-placeholder="Wpisz nazwisko i imie">{{user.nazwisko_imie || 'empty'}}</a></td>
+						<td><a href="#" editable-number="user.indeks" e-style="width: 120px" e-placeholder="Wpisz indeks">{{user.indeks || 'empty'}}</a></td>
+						<td align="center"><a href="#" editable-number="user.js" onbeforesave="validate($data)" e-style="width: 60px">{{user.js}}</a></td>
+						<td align="center"><a href="#" editable-number="user.jq" onbeforesave="validate($data)" e-style="width: 60px">{{user.jq}}</a></td>
+						<td align="center"><a href="#" editable-number="user.php" onbeforesave="validate($data)" e-style="width: 60px" >{{user.php}}</a></td>
+						<td align="center">{{user.suma=setSuma(user)}}</td>
+					</tr>
+				<!-- Podsumowanie rekordu -->          
+					<tbody>           
+						<tr>
+							<td><b>Podsumowanie</b></td>
+							<td></td>
+							<td></td>
+							<td align="center">{{setJSsuma()}}</td>
+							<td align="center">{{setJQsuma()}}</td>
+							<td align="center">{{setPHPsuma()}}</td>
+							<td align="center">{{setALLsuma()}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div>
+					<input type="button" class="btn btn-primary" id="przycisk" ng-click="addUser();" value="Dodaj osobę"/>
+				</div>
+			</div> <!-- Koniec ng-controller -->
+		</div>  <!-- Koniec ng-app -->
+	</body>
+</html>
